@@ -13,7 +13,7 @@
 - Go to docker folder and create <code>.env</code> file (you can copy content of .env-example file)
 - Run <code>docker compose build</code> from docker folder
 - After success build run <code>docker compose up -d</code>
-- Go inside the php-fpm container using the following command: <code>docker exec -it sh</code>
+- Go inside the php-fpm container using the following command: <code>docker exec -it advanced-php-fpm sh</code>
 - Install the dependencies using composer: <code>composer install</code> (make sure you are in the project folder)
 - Next, initialize yii2 using the command: <code>php init</code>
 - After this, you can leave the container with the <code>exit</code> command
