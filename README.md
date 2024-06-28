@@ -1,60 +1,26 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
-    <br>
+    <h1 align="center">Yii 2 Advanced Docker Template</h1>
 </p>
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+<h3>Project contains next modules:</h3>
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+- Yii2 advanced template
+- php:8.0-fpm-alpine
+- nginx:alpine
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+<h3>To get started follow these steps:</h3>
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
-
-DIRECTORY STRUCTURE
--------------------
-
+- Go to docker folder and create <code>.env</code> file (you can copy content of .env-example file)
+- Run <code>docker compose build</code> from docker folder
+- After success build run <code>docker compose up -d</code>
+- Go inside the php-fpm container using the following command: <code>docker exec -it sh</code>
+- Install the dependencies using composer: <code>composer install</code> (make sure you are in the project folder)
+- Next, initialize yii2 using the command: <code>php init</code>
+- After this, you can leave the container with the <code>exit</code> command
+- Now you need to update the <code>/etc/hosts</code> file and set the virtual domain name according to the FRONTEND_SERVER_NAME and BACKEND_SERVER_NAME parameters in the .env file.
+- Or you can simply run following code (for ubuntu):
 ```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
+echo 127.0.0.1 front.yii2.loc >> /etc/hosts;
+echo 127.0.0.1 back.yii2.loc >> /etc/hosts;
 ```
+if you changed <code>FRONTEND_SERVER_NAME</code> or <code>BACKEND_SERVER_NAME</code> in <code>.env</code> file, then replace <code>front.yii2.loc</code> and <code>back.yii2.loc</code> with your actual domains

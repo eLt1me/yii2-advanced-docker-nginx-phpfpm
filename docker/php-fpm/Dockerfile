@@ -18,7 +18,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Установите зависимости
 #COPY . /var/www/app
-WORKDIR ${CONTAINER_PROJECT_LOCATION}
+WORKDIR /var/www/app
 
 #RUN composer install
 
